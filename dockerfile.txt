@@ -1,0 +1,5 @@
+FROM nginx:1.21.4
+
+COPY test1.html /usr/share/nginx/html/test1.html
+
+EXPOSE 90
