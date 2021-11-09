@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: latest
+
+    - name: Copy static files
+      copy:
+        src: "./task1/test.html"
+        dest: "/usr/share/nginx/html/test.html"
+        mode: 0644
+      notify:
+        - Restart Nginx
+  
+  handlers:
+    - name: Restart Nginx
+      service:
+            name: nginx
+            state: restarted
+      
